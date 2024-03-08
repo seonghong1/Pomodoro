@@ -1,40 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// ignore_for_file: prefer_const_constructors
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import './widgets/button-widget.dart';
+import './widgets/wallet-widget.dart';
+import 'constants/dummy-datas.dart';
+import 'constants/colors.dart';
 
 void main() {
   runApp(const MyApp());
 }
-
-const Color COLOR_MAIN = Color(0xFF181818);
-const Color COLOR_BLACK = Color(0xFF000000);
-const Color COLOR_WHITE = Color(0xFFFFFFFF);
-const Color COLOR_ORANGE = Color(0xFFF2B33A);
-const Color COLOR_GREY = Color.fromARGB(255, 167, 167, 167);
-const Color COLOR_LIGHT_GREY = Color(0xFF363B3B);
-
-const DUMMY_DATA = [
-  {
-    'S_CURRENCY': 'EUR',
-    'L_CURRENCY': "Euro",
-    "MONEY": "931,232,000",
-    "IMAGE": "euro.png"
-  },
-  {
-    'S_CURRENCY': 'USD',
-    'L_CURRENCY': "Dollar",
-    "MONEY": "472,000",
-    "IMAGE": "dollar.png"
-  },
-  {
-    'S_CURRENCY': 'INR',
-    'L_CURRENCY': "Rupee",
-    "MONEY": "3,000,000",
-    "IMAGE": "rupee.png"
-  },
-];
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -68,15 +43,23 @@ class MyApp extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
+                height: 20,
+              ),
+              SizedBox(
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Icon(Icons.star),
+                    Icon(
+                      Icons.menu,
+                      size: 40,
+                      color: COLOR_WHITE,
+                    ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          'Hey Selena',
+                          'Hey Seonghong',
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 28,
@@ -92,6 +75,9 @@ class MyApp extends StatelessWidget {
                     )
                   ],
                 ),
+              ),
+              SizedBox(
+                height: 40,
               ),
               SizedBox(
                 child: Text(
@@ -123,7 +109,7 @@ class MyApp extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 100,
+                height: 60,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -153,101 +139,6 @@ class MyApp extends StatelessWidget {
               )
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class WalletWidget extends StatelessWidget {
-  final _data;
-  final _bgColor;
-  final _itemColor;
-  const WalletWidget(this._data, color, {super.key})
-      : _bgColor = color % 2 == 0 ? COLOR_LIGHT_GREY : COLOR_WHITE,
-        _itemColor = color % 2 == 0 ? COLOR_WHITE : COLOR_BLACK;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      clipBehavior: Clip.hardEdge,
-      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-      decoration: BoxDecoration(
-          color: _bgColor, borderRadius: BorderRadius.circular(8.0)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                _data['L_CURRENCY'],
-                style: TextStyle(
-                    color: _itemColor,
-                    fontSize: 30,
-                    fontWeight: FontWeight.w600),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                children: [
-                  Text(
-                    _data['MONEY'],
-                    style: TextStyle(
-                        color: _itemColor,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400),
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Text(
-                    _data['S_CURRENCY'],
-                    style: TextStyle(
-                        color: _itemColor,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w300),
-                  )
-                ],
-              )
-            ],
-          ),
-          Transform.translate(
-            offset: Offset(8, 20),
-            child: Transform.scale(
-              scale: 1.8,
-              child: Image.asset(
-                _data['IMAGE'],
-                width: 70,
-                color: _itemColor,
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class ButtonWidget extends StatelessWidget {
-  final text;
-  final color;
-  final backGroundColor;
-  const ButtonWidget(this.text, this.color, this.backGroundColor, {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return TextButton(
-      style: TextButton.styleFrom(
-        backgroundColor: backGroundColor,
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
-      ),
-      onPressed: () {},
-      child: Text(
-        text,
-        style: TextStyle(
-          color: color,
         ),
       ),
     );
