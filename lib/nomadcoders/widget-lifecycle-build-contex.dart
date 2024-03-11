@@ -65,6 +65,11 @@ class LargeText extends StatefulWidget {
 
 class _LargeTextState extends State<LargeText> {
   @override
+  /**
+   * 
+   * context부모 요소의 widget요소에 접근할 수 있음
+   * 
+   */
   Widget build(BuildContext context) {
     return Text(
       'text',
