@@ -4,71 +4,49 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:new_app/screen/home_screen.dart';
 
 void main() {
   runApp(const MyWidget());
 }
 
-class MyWidget extends StatefulWidget {
+class MyWidget extends StatelessWidget {
   const MyWidget({super.key});
-
-  @override
-  State<MyWidget> createState() => _MyWidgetState();
-}
-
-enum ChangeType { add, remove }
-
-class _MyWidgetState extends State<MyWidget> {
-  /**
-   * 
-   * build매서드가 호출되기 전에 실행
-   * 
-   */
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
-  /**
-   * 
-   * 위젯이 unMounted되기 전에 호출
-   * 
-   */
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-          textTheme: TextTheme(titleLarge: TextStyle(color: Colors.red))),
+          textTheme: TextTheme(
+              displayLarge: TextStyle(
+                fontSize: 40,
+                color: Color(0xFF232B55),
+                fontWeight: FontWeight.w600,
+              ),
+              displayMedium: TextStyle(
+                fontSize: 20,
+                color: Color(0xFF232B55),
+                fontWeight: FontWeight.w600,
+              )),
+          cardColor: Color(0xFFF4EDDB),
+          colorScheme: ColorScheme(
+            brightness: Brightness.light,
+            primary: Color(0xFF202020),
+            onPrimary: Color(0xFF505050),
+            secondary: Color(0xFFBBBBBB),
+            onSecondary: Color(0xFFEAEAEA),
+            error: Color(0xFFF32424),
+            onError: Color(0xFFF32424),
+            background: Color(0xFFE7626C),
+            onBackground: Color(0xFFFFFFFF),
+            surface: Color(0xFF54B435),
+            onSurface: Color(0xFF54B435),
+          ).copyWith(background: Color(0xFFE7626C))),
       home: Scaffold(
-        body: Column(
-          children: [LargeText()],
-        ),
+        body: HomeScreen(),
       ),
     );
   }
 }
 
-class LargeText extends StatefulWidget {
-  const LargeText({
-    super.key,
-  });
-
-  @override
-  State<LargeText> createState() => _LargeTextState();
-}
-
-class _LargeTextState extends State<LargeText> {
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      'text',
-      style: TextStyle(color: Theme.of(context).textTheme.titleLarge!.color),
-    );
-  }
-}
+enum ChangeType { add, remove }
